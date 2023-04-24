@@ -1,7 +1,9 @@
 from ninja import NinjaAPI
-from core.models import  BookingModel, RoomModel, PlaceModel, CityModel, CountryModel, ContinentModel
+from core.models import  BookingModel, RoomModel, PlaceModel, CityModel, CountryModel, ContinentModel, TemporalBookingModel
 from ninja import Schema
 from datetime import date
+from datetime import datetime
+from django.utils.timezone import now
 from django.db.models import Q
 
 api = NinjaAPI(title="Traveling API", version="1.0.0")
@@ -243,3 +245,153 @@ def post_continent(request, continent: ContinentSchema):
     }
 
 
+@api.get("/availability/places/{place_id}")
+def get_place_availability(request, place_id: int, check_in: date, check_out: date):
+    rooms = RoomModel.objects.filter(place_id = place_id)
+    results = []
+    for room in rooms:
+        total_rooms = room.total_rooms
+        total_rooms_bookings = len(room.bookings.filter(
+        Q (check_in__gte = check_in, check_in__lte = check_out, check_out__gte = check_out) |
+        Q (check_in__lte = check_in, check_out__gte = check_out ) |
+        Q (check_in__lte = check_in, check_out__gte = check_in, check_out__lte = check_out) | 
+        Q (check_in__gte = check_in, check_out__lte = check_out)
+        ))
+        temporal_bookings = len(room.temporal_bookings.filter(
+        Q (check_in__gte = check_in, check_in__lte = check_out, check_out__gte = check_out) |
+        Q (check_in__lte = check_in, check_out__gte = check_out ) |
+        Q (check_in__lte = check_in, check_out__gte = check_in, check_out__lte = check_out) | 
+        Q (check_in__gte = check_in, check_out__lte = check_out)
+        ).filter(expires_at__gte=now()))
+
+        total_free_rooms = total_rooms - total_rooms_bookings - temporal_bookings
+        if total_free_rooms > 0 :
+            results.append({
+                "total_free_rooms" : total_free_rooms,
+                "name": room.name,
+                "place": room.place.name,
+                "picture": room.picture.url,
+                "description": room.description,
+                "beds": room.beds,
+                "price": room.price,
+                "total_rooms": room.total_rooms,
+            
+
+            })
+    return results
+
+
+
+@api.get("/availability/city/{city_id}")
+def get_city_availability(request, check_in: date, check_out: date, city_id: int):
+    city =  CityModel.objects.get(id = city_id)
+    results = [] 
+    for place in city.places.all():
+        available_rooms = []
+        for room in place.rooms.all():
+            total_rooms = room.total_rooms
+            total_rooms_bookings = len(room.bookings.filter(
+            Q (check_in__gte = check_in, check_in__lte = check_out, check_out__gte = check_out) |
+            Q (check_in__lte = check_in, check_out__gte = check_out ) |
+            Q (check_in__lte = check_in, check_out__gte = check_in, check_out__lte = check_out) | 
+            Q (check_in__gte = check_in, check_out__lte = check_out)
+            ))
+            temporal_bookings = len(room.temporal_bookings.filter(
+            Q (check_in__gte = check_in, check_in__lte = check_out, check_out__gte = check_out) |
+            Q (check_in__lte = check_in, check_out__gte = check_out ) |
+            Q (check_in__lte = check_in, check_out__gte = check_in, check_out__lte = check_out) | 
+            Q (check_in__gte = check_in, check_out__lte = check_out)
+            ).filter(expires_at__gte=now()))
+
+            
+            total_free_rooms = total_rooms - total_rooms_bookings - temporal_bookings
+            if total_free_rooms > 0 :
+                available_rooms.append({
+
+                    "name": room.name,
+                    "price": room.price,
+                    "total_free_rooms" : total_free_rooms,
+
+                })
+
+        results.append({
+            "place_id" : place.id,
+            "available_rooms" : available_rooms,
+            "place" : {
+            "name": place.name,
+            "picture": place.picture.url,
+            "description": place.description,
+            "address": place.address,
+            "price": place.price,
+            "category": place.category,
+            "stars": place.stars,
+            "city": place.city.name,
+            }
+            
+        })
+    
+    return results
+
+
+
+
+@api.get("/temporal_booking")
+def get_temporal_bookings(request):
+    results = []
+    for booking in TemporalBookingModel.objects.filter():
+        results.append({
+        "name": booking.room.name,
+        "room": booking.room.id,
+        "check_in": booking.check_in,
+        "check_out": booking.check_out,
+        "total_price": booking.total_price,
+        "total_guests": booking.total_guests,
+        "entitled_guest_name": booking.entitled_guest_name,
+        "entitled_guest_surname": booking.entitled_guest_surname,
+        "phone": booking.phone,
+        "email": booking.email,
+        "expires_at": booking.expires_at,
+
+        })
+    return {"get_temporalBookings": results}
+
+
+
+class TemporalBookingSchema(Schema):
+    name: str
+    room: int
+    check_in: date
+    check_out: date
+    total_price: int
+    total_guests: int
+    entitled_guest_name: str
+    entitled_guest_surname: str
+    phone: int
+    email: str
+    expires_at: int
+
+
+@api.post("/temporalBooking")
+def post_temporalBooking(request, temporalBooking: TemporalBookingSchema):
+    db_temporalBooking, created = TemporalBookingSchema.objects.create(
+        name=temporalBooking.name, room=temporalBooking.room, check_in=temporalBooking.check_in, check_out=temporalBooking.check_out, total_price=temporalBooking.total_price, 
+        total_guests=temporalBooking.total_guests, entitled_guest_name=temporalBooking.entitled_guest_name, entitled_guest_surname=temporalBooking.entitled_guest_surname, 
+        phone=temporalBooking.phone, email=temporalBooking.email, expires_at=temporalBooking.expires_at
+    )
+    return {
+        "booking": {
+            "name": db_temporalBooking.name,
+            "id": db_temporalBooking.id,
+            "room": db_temporalBooking.room,
+            "check_in":db_temporalBooking.check_in,
+            "check_out":db_temporalBooking.check_out,
+            "total_price":db_temporalBooking.total_price,
+            "total_guests":db_temporalBooking.total_guests,
+            "entitled_guest_name":db_temporalBooking.entitled_guest_name,
+            "entitled_guest_surname":db_temporalBooking.entitled_guest_surname,
+            "phone":db_temporalBooking.phone,
+            "email":db_temporalBooking.email,
+            "expires_at":db_temporalBooking.expires_at
+
+        }
+    }

@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date
+from datetime import datetime
 from django.core.validators import  MaxValueValidator, MinValueValidator
 
 
@@ -70,6 +70,21 @@ class BookingModel(models.Model):
     entitled_guest_surname = models.CharField(max_length=20)
     phone = models.IntegerField()
     email = models.EmailField()
+
+    def __str__(self) -> str:
+        return f" {self.room.place} - {self.room.name} "
+    
+class TemporalBookingModel(models.Model):
+    room = models.ForeignKey("RoomModel", on_delete=models.CASCADE, related_name="temporal_bookings")
+    check_in = models.DateField()
+    check_out = models.DateField()
+    total_price = models.IntegerField()
+    total_guests = models.IntegerField()  
+    entitled_guest_name = models.CharField(max_length=20)
+    entitled_guest_surname = models.CharField(max_length=20)
+    phone = models.IntegerField()
+    email = models.EmailField()
+    expires_at = models.DateTimeField()
 
     def __str__(self) -> str:
         return f" {self.room.place} - {self.room.name} "
