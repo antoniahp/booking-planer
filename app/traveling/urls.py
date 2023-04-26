@@ -23,7 +23,8 @@ from api.urls import api
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('prometheus/', include('django_prometheus.urls')),
-    path('api/', api.urls)
+    path('api/', api.urls),
+    path('', include('webclient.urls')),
 ]
 
 if settings.DEBUG:
