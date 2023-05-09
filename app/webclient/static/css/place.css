@@ -1,0 +1,93 @@
+.place_name h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.carousel {
+    max-width: 800px;
+    max-height: 1000px;
+    border-radius: 17px;
+    
+}
+
+#map {
+    height: 400px; 
+    width: 100%;
+
+}
+
+.booking {
+    width: 100%;
+    background-color: #dfe6e9;
+    margin-top: 50px;
+
+}
+
+h3 {
+    text-align: center;
+}
+h4 {
+    text-align: center;
+}
+
+h5 {
+    text-align: center;
+}
+
+.booking {
+    width: 100%;
+    background-color: #dfe6e9;
+    margin-top: 50px;
+}
+
+.list-group-item.top {
+    background-color: #00b894;
+    color: #dfe6e9;
+}
+
+.list-group-item.all {
+    background-color: #dfe6e9
+}
+
+.btn.btn-primary{
+    width: 150px;
+    background-color: #74b9ff
+}
+.btn.btn-primary:hover{
+    background-color: #a29bfe;
+}
+
+.availability .card {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #74b9ff;
+    color: aliceblue;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+.availability-card .row {
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+.availability-cards {
+    width: 100%;
+}
+
+.list-group-item.top {
+    background-color: #00b894;
+    color: #dfe6e9;
+}
+
+.list-group-item.info {
+    text-align: center;
+}
+
+.list-group-item {
+    text-align: center;
+}

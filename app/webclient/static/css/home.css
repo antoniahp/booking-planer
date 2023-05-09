@@ -1,6 +1,48 @@
-h1 {
-	font-weight: 700;
-	font-size: 34px;
-	color: #fdcb6e;
-	margin: 0;
+.home-carousel {
+    margin-left: 20px ;
+    margin-right: 20px ;
 }
+
+.home-page img {
+    width: 100% ;
+    height: 500px;
+    border-radius: 17px;
+}
+
+.menu-card .card {
+    margin-left: 40px;
+    margin-right: 80px;
+    margin-top: 400px;
+    margin-bottom: 100px;
+    background-color: #dfe6e9;
+   
+    border-radius: 48px;
+    box-shadow:  6px 6px 7px #707070,6px -6px 7px #ffffff;
+    
+}
+
+.menu-items {
+    align-content: center;
+    margin-top: 25px;
+    
+}
+
+input {
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+}
+
+
+
+.search-button button {
+    width: 100%;
+    height: 70px;
+    margin-top: 15px;
+    background-color: #74b9ff;
+ }
+
+ .search-button button:hover {
+    color: #FFFFFF;
+    background-color: #a29bfe;
+ }

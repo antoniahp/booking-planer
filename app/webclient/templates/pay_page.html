@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pay_page.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="place-page">
+  <div class="container-fluid">  
+
+          <h1>Your booking</h1>
+          <form method="post">  
+            {% csrf_token %}
+          <div class="row">
+
+            <div class="col-sm-5">
+              <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary" >
+                <div class="hotel-card">
+                  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-auto d-none d-lg-block">
+                      <img
+                        src="https://static.hosteltur.com/app/public/uploads/img/articles/2013/09/01/M_5b14ea6fb7f86_shutterstock_HOTEL.jpg"
+                        alt="">
+                    </div>
+                    <div class="col p-4 d-flex flex-column position-static">
+
+                      <h6 class="mb-0">Hotel ⭐⭐⭐</h6>
+                      <br>
+                      <h3 class="mb-0">Hotel Bastardo</h3>
+                      <p class="card-text mb-auto">Calle Olivera n17, Madrid</p>
+                      <p class="card-text mb-auto">🅿️ 🍽️ 🛜 🚕 🏊🏻‍♀️ </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="price-card">
+                <div class="card-body">
+                  <br>
+                  <h3> Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 280€</h3>
+                </div>
+              </div>
+              <div class="booking-card" >
+                <div class="card-body">
+                  <h3 >The details of your booking</h3> <br>
+                  <h4 >Double suite room</h4>
+                  <h5 >Durartion 5 Nights</h5> <br>
+                  <div class="row">
+                    <div class="col">
+                      <h5 ><b>Check in</b><br>23/07/2023</h5>
+                    </div>
+                    <div class="col">
+                      <h5 ><b>Check out</b><br> 28/07/2023</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="real-price-card">
+                <div class="card-body">
+                  <h3 class="card-title" >Price breakdown</h3>
+                  <br>
+                  <h5 class="card-text" >Original price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>350€</b></h5>
+                  <br>
+                  <h5 class="card-text">Limited time offer &nbsp;&nbsp;&nbsp;&nbsp;<b>-20%</b></h5>
+                  <div class="total-card" >
+                    <div class="card-body">
+                      <div class="old-price">
+                      <h6 >350€ &nbsp; -20%</h6>
+                    </div>
+                    <br>
+                    <div class="new-price">
+                      <h3>Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 280€</h3>
+                    </div>
+                      <p>You enjoy a discount because this accommodation is offering, for a limited time, a reduced price on some rooms that match your search.</p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-7">
+
+                    <div class="details-card">
+                          <div class=" card-body">
+                            <h3>Enter Your Details</h3>
+                          <div class="row">
+                            <div class="col">
+                              <p>Name</p>
+                              <input type="text" class="form-control" placeholder="First name">
+                            </div>
+                            <div class="col">
+                              <p>Last name</p>
+                              <input type="text" class="form-control" placeholder="Last name">
+                            </div>
+                          </div>
+                        </div>
+                  
+
+                  
+                          <div class="form-group row" style="margin-top: 20px;">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                            </div>
+                          </div>
+                  
+
+                  
+                          <div class="form-group row" style="margin-top: 20px;">
+                            <label for="colFormLabel" class="col-sm-2 col-form-label">Telephone</label>
+                            <div class="col-sm-10">
+                              <input type="tel" class="form-control" placeholder="tel.">
+                            </div>
+                          </div>
+                    </div>
+                
+
+                    <div class="adress-card">
+                      <div class=" card-body">
+                        <h3>Enter Your Address</h3>
+                    
+                        <div class="form-group">
+                          <label for="inputAddress">Address</label>
+                          <input type="text" class="form-control" id="inputAddress" placeholder="">
+                        </div>
+                      
+                    
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input type="text" class="form-control" id="inputCity">
+                          </div>
+                        </div>
+                    
+                    
+                        <div class="form-group col-md-2">
+                          <label for="inputZip">Zip</label>
+                          <input type="text" class="form-control" id="inputZip">
+                        </div>
+                      
+                
+                        <div class="form-group row" style="margin-top: 20px;">
+                          <label for="colFormLabel" class="col-sm-2 col-form-label">Telephone</label>
+                          <div class="col-sm-10">
+                            <input type="tel" class="form-control" id="inputEmail3" placeholder="tel.">
+                          </div>
+                        </div>
+                    
+                      </div>
+                    </div>
+
+
+                    <div class="pay-card">
+                      <div class="card-body">   
+                        <h3>How do you want to pay?</h3>
+                      </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                          <div class="card-body">
+                            <img 
+                              src="https://previews.123rf.com/images/magurok/magurok1408/magurok140800069/30735457-tarjeta-de-cr%C3%A9dito-vector-icon-flat.jpg"
+                              alt="">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Credit Card
+                                </label>
+                              </div>
+          
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="card-body">
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png" alt="">
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  PayPal
+                                </label>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="card-body">
+                            <img src="https://cdn-icons-png.flaticon.com/512/6124/6124998.png" alt="">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                              <label class="form-check-label" for="flexRadioDefault2">
+                                Google Pay
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="info">
+                      <h5>New Card</h5>
+                      <img src="https://odontomark.com/wp-content/uploads/2018/01/tarjetas-credito-logos.png" alt="">
+                    
+                        <div class="name-number">
+                          <div class="form-group">
+                            <label for="formGroupExampleInput">Cardholder's Name</label>
+                            <input type="Cardholder's Name" class="form-control" id="formGroupExampleInput" placeholder="Cardholder's Name">
+                          </div>
+                          <div class="form-group" style="margin-top: 20px; width: 100%;">
+                            <label for="formGroupExampleInput2">Card Number</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Card Number">
+                          </div>
+                        </div>
+                    </div>  
+                    
+                    <div class="date-cvc">
+                        <div class="row">
+                          
+                            <div class="col" style="margin-top: 20px; margin-bottom: 50px;">
+                              <label for="formGroupExampleInput2">Expiration Date</label>
+                              <input type="text" class="form-control" placeholder="MM/YY">
+                            </div>
+                            <div class="col" style="margin-top: 20px; margin-bottom: 50px;">
+                              <label for="formGroupExampleInput2">CVC</label>
+                              <input type="text" class="form-control" placeholder="CVC">
+                            </div>
+                            <div class="complete-booking-button">
+                              <input type="submit" value="submit">
+                            </div>
+                          
+                        </div>
+                    </div>
+                    </div>
+                  
+            </div>
+
+
+      
+
+    </div>
+  </form>
+  </div>
+</div>
+
+
+{% endblock %}

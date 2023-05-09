@@ -17,3 +17,10 @@ def base(request):
 def place(request):
     context = {}
     return render(request, "place.html", context)
+
+
+def pay_page(request):
+    if request.method == "POST":
+        print(request.POST.get("address"))
+    context = {}
+    return render(request, "pay_page.html", context)

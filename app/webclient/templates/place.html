@@ -1,115 +1,199 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block content %}
 
-    <div class="place_name">
-        <h1 style="text-align: center; margin-bottom: 100px;">Hotel Bastardo⭐⭐⭐</h1>
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/place.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="place-page">
+    <div class="container-fluid">
+        <div class="place_name">
+            <h1>Hotel Bastardo⭐⭐⭐</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="carousel">
+                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class=""
+                                aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
+                                class=""></button>
+                            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
+                                class="active" aria-current="true"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/diaporama/_-image-0_50/1000x548_C_image-0_50.jpg"
+                                    alt="">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/_-image-3_30/1000x548_C_image-3_30.jpg"
+                                    alt="">
+                            </div>
+                            <div class="carousel-item active">
+                                <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/_-image-3_30/1000x548_C_image-3_30.jpg"
+                                    alt="">
+
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Encuéntrese con una cálida bienvenida mediterránea para una estancia inolvidable en
+                                    nuestro moderno hotel de 4 estrellas en Magaluf, en la hermosa región de Calvià,
+                                    Mallorca.
+                                    Cree una estancia a su medida con nuestra selección de elegantes habitaciones,
+                                    opciones de alojamiento y servicios de alta calidad, todo ello proporcionado con
+                                    profesionalidad, una sonrisa amable y un toque personal.
+                                    Tanto si está fuera todo el día como si nunca deja su tumbona junto a la piscina, el
+                                    Hotel Samos tiene todo lo que necesita para un maravilloso descanso, sea cual sea su
+                                    tipo de vacaciones.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="map"></div>
+                <script>
+                    const map = L.map('map').setView([40.425229, -3.700060], 13);
+
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 10,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    }).addTo(map);
+
+                    L.marker([40.425413, -3.700837]).addTo(map)
+                        .bindPopup('<b>Hotel Bastardo</b><br/>Madrid.').openPopup();
+
+                </script>
+                <div class="booking">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item top">
+                                <h3>Habitación doble suit</h3>
+                            </li>
+                            <li class="list-group-item all"><br>
+                                <h5>📆Check in: 05/05/23 📆Check out: 07/05/23</h5><br>
+                            </li>
+                            <li class="list-group-item all"><br>
+                                <h3>Precio final: 356€ <br><br> <button type="button" class="btn btn-primary">Reserver now</button></h3><br>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-left: 50px; max-width: 800px; max-height: 1000px ;border-radius: 17px; " >
-                <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
-                </div>
-                <div class="carousel-inner">
-                <div class="carousel-item">
-                    <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/diaporama/_-image-0_50/1000x548_C_image-0_50.jpg" alt="">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://www.freixanetwellness.com/content/imgsxml/galerias/noticias/39/tab-hotelsamos225.jpg" alt="">
-                </div>
-                <div class="carousel-item active">
-                    <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/_-image-3_30/1000x548_C_image-3_30.jpg" alt="">
-
-                </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
-                <div class="card">
-                    <div class="card-body"> 
-                        <h5>Encuéntrese con una cálida bienvenida mediterránea para una estancia inolvidable en nuestro moderno hotel de 4 estrellas en Magaluf, en la hermosa región de Calvià, Mallorca.
-                            Cree una estancia a su medida con nuestra selección de elegantes habitaciones, opciones de alojamiento y servicios de alta calidad, todo ello proporcionado con profesionalidad, una sonrisa amable y un toque personal.
-                            Tanto si está fuera todo el día como si nunca deja su tumbona junto a la piscina, el Hotel Samos tiene todo lo que necesita para un maravilloso descanso, sea cual sea su tipo de vacaciones.</h5>
-                    </div>
-                  </div>
+    <div class="availability">
+        <div class="card">
+            <div class="card-body">
+                <h4>Availability</h4>
             </div>
         </div>
-        <div class="col-sm-6" >
-            <div class="card" style="width: 800px; height: 800px; background-color: #dfe6e9">
-                <ul class="list-group list-group-flush" >
-                  <li class="list-group-item" style="background-color: #00b894; color: #dfe6e9;"><h3 style="text-align: center;">Habitación doble suit</h3></li>
-                  <li class="list-group-item" style="background-color: #dfe6e9"><h5 style="text-align: center;">📆Check in: 05/05/23  📆Check out: 07/05/23</h5></li> 
+    </div>
+    <div class="availability-card">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="availability-cards">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item top">
+                                <h3>Room types</h3>
+                            </li>
+                            <li class="list-group-item">Single room</li>
+                            <li class="list-group-item">Suite room</li>
+                            <li class="list-group-item">Suite room</li>
+                            <li class="list-group-item">Double room suite</li>
+                            <li class="list-group-item">Single room</li>
+                            <li class="list-group-item">Room with balcony</li>
+                            <li class="list-group-item">Double room suite</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-                  <li class="list-group-item" style="background-color: #dfe6e9"><h3 style="text-align: center;">Precio final: 356€ <br> <button type="button" class="btn btn-primary" style="width: 150px; background-color: #74b9ff">Reservar ahora</button></h3></li>
-                  <li class="list-group-item" style="margin-left: 100px; margin-top: 50px; width: 630px;"><iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3078.244925353951!2d2.530903215368515!3d39.50896147948094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297892e4524f483%3A0x94a3a1dc571e9331!2sHotel%20Samos!5e0!3m2!1ses!2ses!4v1682522426107!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></li>
-                </ul>
-              </div>
-        </div>
-    </div>       
+            <div class="col-sm-3">
+                <div class="availability-cards">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item top" >
+                                <h3>Persons</h3>
+                            </li>
+                            <li class="list-group-item info">1👤</li>
+                            <li class="list-group-item info">2👤👤</li>
+                            <li class="list-group-item info">2👤👤</li>
+                            <li class="list-group-item info">4👤👤 👤👤</li>
+                            <li class="list-group-item info">1👤</li>
+                            <li class="list-group-item info">3👤👤 👤</li>
+                            <li class="list-group-item info">2👤👤</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-    <div class="card" style="margin-top: 50px; margin-bottom: 50px; margin-left: 200px; margin-right: 200px; background-color: #74b9ff; color: aliceblue;">
-        <div class="card-body">
-            <h4 style="text-align: center;">Availability</h4>
+            <div class="col-sm-3">
+                <div class="availability-cards">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item top">
+                                <h3>Price</h3>
+                            </li>
+                            <li class="list-group-item info">150€</li>
+                            <li class="list-group-item info">550€</li>
+                            <li class="list-group-item info">220€</li>
+                            <li class="list-group-item info">345€</li>
+                            <li class="list-group-item info">743€</li>
+                            <li class="list-group-item info">320€</li>
+                            <li class="list-group-item info">1123€</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="availability-cards">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item top">
+                                <h3>Reserve</h3>
+                            </li>
+                            <li class="list-group-item"><a href="#"
+                                    class="link-primary">Reserve</a></li>
+                            <li class="list-group-item"><a href="#"
+                                    class="link-primary">Reserve</a></li>
+                            <li class="list-group-item"><a href="#"
+                                    class="link-primary">Reserve</a></li>
+                            <li class="list-group-item"><a href="#"
+                                    class="link-primary">Reserve</a></li>
+                            <li class="list-group-item"><a href="#"
+                                    class="link-primary">Reserve</a></li>
+                            <li class="list-group-item"><a href="#"
+                                    class="link-primary">Reserve</a></li>
+                            <li class="list-group-item"><a href="#"
+                                    class="link-primary click">Reserve</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
 
-    <div class="row" style=" margin-bottom: 50px; margin-left: 200px; margin-right: 200px;">
-        <div class="col-sm-4">
-            <div class="card" style="width:600px;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #00b894; color: #dfe6e9;"><h3 style="text-align: center;">Tipos de habitación</h3></li>
-                  <li class="list-group-item">Habitación individual</li>
-                  <li class="list-group-item">Habitación suite</li>
-                  <li class="list-group-item">Habitación suite</li>
-                  <li class="list-group-item">Habitación doble suite</li>
-                  <li class="list-group-item">Habitación individual</li>
-                  <li class="list-group-item">Habitación con balcón</li>
-                  <li class="list-group-item">Habitación doble suite</li>
-                </ul>
-              </div>
-              
-        </div>
-        <div class="col-sm-4">
-            <div class="card" style="width:600px;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #00b894; color: #dfe6e9;"><h3 style="text-align: center;">Personas</h3></li>
-                    <li class="list-group-item" style="text-align: center;">1👤</li>
-                    <li class="list-group-item" style="text-align: center;">2👤👤</li>
-                    <li class="list-group-item" style="text-align: center;">2👤👤</li>
-                    <li class="list-group-item" style="text-align: center;">4👤👤 👤👤</li>
-                    <li class="list-group-item" style="text-align: center;">1👤</li>
-                    <li class="list-group-item" style="text-align: center;">3👤👤 👤</li>
-                    <li class="list-group-item" style="text-align: center;">2👤👤</li>
-                </ul>
-              </div>
-              
-        </div>
-        <div class="col-sm-4">
-            <div class="card" style="width:600px;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" style="background-color: #00b894; color: #dfe6e9;"><h3 style="text-align: center;">Precio</h3></li>
-                    <li class="list-group-item" style="text-align: center;">150€</li>
-                    <li class="list-group-item" style="text-align: center;">550€</li>
-                    <li class="list-group-item" style="text-align: center;">220€</li>
-                    <li class="list-group-item" style="text-align: center;">345€</li>
-                    <li class="list-group-item" style="text-align: center;">743€</li>
-                    <li class="list-group-item" style="text-align: center;">320€</li>
-                    <li class="list-group-item" style="text-align: center;">1123€</li>
-                </ul>
-              </div>
-              
-        </div>
-    </div>
-              
-            
+
 {% endblock %}
-          

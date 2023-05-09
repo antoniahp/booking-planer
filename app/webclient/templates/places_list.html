@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
+
 {% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/places_list.css' %}">
+{% endblock %}
+
 {% block content %}
 
+<div class="place-list-page">
+  <div class="container-fluid">
 
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary overflow-auto" style="width: 420px; max-height: 100vh;">
-                        <h3 style="margin-left: 20px; color: #a29bfe;">Your research 🔍</h3>
+                  <div class="hotels-column">
+                    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary overflow-auto" style="width: 100%; max-height: 100vh;">
+                        <h2>Your Research 🔍</h2>
 
-                        <div class="card-group" style=" margin-bottom: 25px; width: 400px; ">
-                            <div class="card" style="background-color: #dfe6e9">
+                        <div class="card-group check" >
+                            <div class="card check">
                               <div class="card-body">
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control"  placeholder="Check in" style="width: 100px;">
+                                    <input type="text" class="form-control"  placeholder="Check in">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-th"></span>
                                     </div>
@@ -21,91 +30,137 @@
                             </div>
                           
                           
-                            <div class="card" style="background-color: #dfe6e9">
+                            <div class="card check">
                               <div class="card-body">
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control"  placeholder="Check out" style="width: 100px;">
+                                    <input type="text" class="form-control"  placeholder="Check out">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-th"></span>
                                     </div>
                                 </div>
                               </div>    
                             </div>
-                            <button type="button" class="btn btn-primary" style="background-color: #74b9ff">🔍</button>
+                         
+                            <button type="button" class="btn btn-primary" >🔍</button>
+                          
                         </div>
                         
 
                         <div class="list-group list-group-flush border-bottom scrollarea">
                         
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width: 400px;">
-                                <div class="col-auto d-none d-lg-block">
-                                  <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2013/09/01/M_5b14ea6fb7f86_shutterstock_HOTEL.jpg" alt="" style=" max-width: 150px; max-height: 550px;  border-radius: 17px; margin-top: 20px; margin-left: 10px; margin-bottom: 20px;">
+                          <div class="hotel-card">
+                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" >
+                                <div class="col-auto d-none d-lg-block" >
+                                  <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2013/09/01/M_5b14ea6fb7f86_shutterstock_HOTEL.jpg" alt="" >
                                 </div>
-                                <div class="col p-4 d-flex flex-column position-static">
+                                <div class="col p-4 d-flex flex-column position-static" >
                                   <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐</strong>
                                   <h4 class="mb-0">Hotel Bastardo</h4>
                                   <p class="card-text mb-auto">Adress</p>
-                                  <button type="button" class="btn btn-primary" style="width: 150px; background-color: #74b9ff">Availability</button>
+                                  <button type="button" class="btn btn-primary card" >Availability</button>
                                </div>
                             </div>
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width: 400px;">
+                          </div>
+
+                          <div class="hotel-card">
+                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                                 <div class="col-auto d-none d-lg-block">
-                                  <img src="https://www.intermundial.es/blog/wp-content/uploads/2011/09/problemas-hotel-1200x798.jpg" alt="" style=" max-width: 150px; max-height: 550px;  border-radius: 17px; margin-top: 20px; margin-left: 10px; margin-bottom: 20px;">
+                                  <img src="https://www.intermundial.es/blog/wp-content/uploads/2011/09/problemas-hotel-1200x798.jpg" alt="" >
                                 </div>
                                 <div class="col p-4 d-flex flex-column position-static">
                                   <strong class="d-inline-block mb-2 text-primary">⭐⭐</strong>
                                   <h4 class="mb-0">Hotel Maravilla</h4>
                                   <p class="card-text mb-auto">Adress</p>
-                                  <button type="button" class="btn btn-primary" style="width: 150px; background-color: #74b9ff">Availability</button>
+                                  <button type="button" class="btn btn-primary card">Availability</button>
                                </div>
                             </div>
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width: 400px;">
-                                <div class="col-auto d-none d-lg-block">
-                                  <img src="https://www.hotelgest.com/wp-content/uploads/2022/10/hotelgest.jpg" alt="" style=" max-width: 150px; max-height: 550px;  border-radius: 17px; margin-top: 20px; margin-left: 10px; margin-bottom: 20px;">
+                          </div>
+
+                            <div class="hotel-card">
+                              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                  <div class="col-auto d-none d-lg-block">
+                                    <img src="https://www.hotelgest.com/wp-content/uploads/2022/10/hotelgest.jpg" alt="" >
+                                  </div>
+                                  <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐⭐</strong>
+                                    <h4 class="mb-0">Hotel Samos</h4>
+                                    <p class="card-text mb-auto">Adress</p>
+                                    <button type="button" class="btn btn-primary card">Availability</button>
                                 </div>
-                                <div class="col p-4 d-flex flex-column position-static">
-                                  <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐⭐</strong>
-                                  <h4 class="mb-0">Hotel Samos</h4>
-                                  <p class="card-text mb-auto">Adress</p>
-                                  <button type="button" class="btn btn-primary" style="width: 150px; background-color: #74b9ff">Availability</button>
-                               </div>
+                              </div>
                             </div>
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width: 400px;">
-                                <div class="col-auto d-none d-lg-block">
-                                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB4jc5QUq-gKAZFgECy8fEal7VWuWRVutJmw&usqp=CAU" alt="" style=" max-width: 150px; max-height: 550px;  border-radius: 17px; margin-top: 20px; margin-left: 10px; margin-bottom: 20px;">
+
+                            <div class="hotel-card">
+                              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                  <div class="col-auto d-none d-lg-block">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB4jc5QUq-gKAZFgECy8fEal7VWuWRVutJmw&usqp=CAU" alt="">
+                                  </div>
+                                  <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="d-inline-block mb-2 text-primary">⭐</strong>
+                                    <h4 class="mb-0">Hostal Sans</h4>
+                                    <p class="card-text mb-auto">Adress</p>
+                                    <button type="button" class="btn btn-primary card">Availability</button>
                                 </div>
-                                <div class="col p-4 d-flex flex-column position-static">
-                                  <strong class="d-inline-block mb-2 text-primary">⭐</strong>
-                                  <h4 class="mb-0">Hostal Sans</h4>
-                                  <p class="card-text mb-auto">Adress</p>
-                                  <button type="button" class="btn btn-primary" style="width: 150px; background-color: #74b9ff">Availability</button>
-                               </div>
+                              </div>
                             </div>
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="width: 400px;">
-                                <div class="col-auto d-none d-lg-block">
-                                  <img src="https://guias-viajar.com/estados-unidos/wp-content/uploads/sites/4/2018/03/estados-unidos-moteles-003.jpg" alt="" style=" max-width: 150px; max-height: 550px;  border-radius: 17px; margin-top: 20px; margin-left: 10px; margin-bottom: 20px;">
+
+                            <div class="hotel-card">
+                              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                  <div class="col-auto d-none d-lg-block">
+                                    <img src="https://guias-viajar.com/estados-unidos/wp-content/uploads/sites/4/2018/03/estados-unidos-moteles-003.jpg" alt="" >
+                                  </div>
+                                  <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐⭐</strong>
+                                    <h4 class="mb-0">Route 66</h4>
+                                    <p class="card-text mb-auto">Adress</p>
+                                    <button type="button" class="btn btn-primary card">Availability</button>
                                 </div>
-                                <div class="col p-4 d-flex flex-column position-static">
-                                  <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐⭐</strong>
-                                  <h4 class="mb-0">Route 66</h4>
-                                  <p class="card-text mb-auto">Adress</p>
-                                  <button type="button" class="btn btn-primary" style="width: 150px; background-color: #74b9ff">Availability</button>
-                               </div>
+                              </div>
                             </div>
+
                         </div>
                     </div>
+                  </div>
                 </div>
-                <div class="col-sm-7">
-                    <div class="card bg-dark text-white">
-                        <img class="card-img" src="https://st3.idealista.com/news/archivos/styles/fullwidth_xl/public/2022-02/mapa_napoleon.jpg?VersionId=WKJc6e6gPK7DtX4dJCIJ6jjoqLF3L2cn&itok=0rUaIgy6" alt="Card image">
-                        <div class="card-img-overlay">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text">Last updated 3 mins ago</p>
-                        </div>
-                      </div>
-            </div>
+                <div class="col-sm-8">
+                  <div id="map"></div>
+                </div>
+                <script>
+                  const map = L.map('map').setView([39.714760, 2.914294], 13);
+                
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 10,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
               
+                var marker = L.marker([39.859, 3.11]).addTo(map)
+                  .bindPopup('<b>Hotel AlcudiaMar</b>').openPopup();
+                  
+                var marker = L.marker([39.899160, 3.079547]).addTo(map)
+                  .bindPopup('<b>Hostal Pollentia</b>').openPopup();
+  
+                var marker = L.marker([39.509094, 2.532609]).addTo(map)
+                  .bindPopup('<b>Hotel Samos</b><br/>Magalluf, Mallorca.').openPopup();
+                
+                var marker = L.marker([40.425413, -3.700837]).addTo(map)
+                  .bindPopup('<b>Hotel Bastardo</b><br/>Madrid.').openPopup();
+  
+                var marker = L.marker([39.530565, 2.737518]).addTo(map)
+                  .bindPopup('<b>Hotel Maravillas</b><br/>Arenal, Mallorca.').openPopup();
+  
+                var marker = L.marker([39.929123, 3.133735]).addTo(map)
+                  .bindPopup('<b>Hotel Formentor!</b><br />Cabo Formentor.').openPopup();
+  
+                var marker = L.marker([39.851802, 2.801514]).addTo(map)
+                  .bindPopup('<b>Apartametos Calobra</b><br />Sa Calobra.').openPopup();
             
+                
+                </script>
+  
+              </div>
+            </div>
+        
+  </div> 
+</div>        
 {% endblock %}
           

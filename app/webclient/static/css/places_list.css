@@ -1,0 +1,53 @@
+.hotels-column h2 {
+    margin-top: 20px;
+}
+
+.hotels-column {
+    width: 100%;
+    max-height: 100vh;
+    background-color: #fbfbfb;
+}
+.hotel-card img{
+    max-width: 150px; 
+    max-height: 150px; 
+    border-radius: 17px;
+    margin-top: 20px; 
+    margin-left: 10px; 
+    margin-bottom: 20px;
+}
+
+.card-group.check{
+    margin-bottom: 25px;
+    width: 100%; 
+}
+
+.card.check {
+    background-color: #dfe6e9
+}
+
+input {
+    width: 100%;
+}
+
+.btn.btn-primary {
+    background-color: #74b9ff
+
+}
+
+.btn.btn-primary:hover {
+    background-color: #a29bfe
+
+}
+
+.btn.btn-primary.card {
+    width: 150px; 
+    background-color: #74b9ff
+}
+
+.btn.btn-primary.card:hover {
+    background-color: #a29bfe
+}
+
+#map {
+    height: 100%;
+}
