@@ -9,6 +9,8 @@
 {% block content %}
     <div class="home-page">
         <div class="container-fluid">
+        <form method="post">  
+            {% csrf_token %}
             <div class="home-carousel">
                 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -30,7 +32,11 @@
                                     
                                     <div class="col-sm-4">
                                         <div class="card-body">
-                                            <input type="text" class="form-control"  placeholder="City" >
+                                            <select name="city" id="">
+                                                {% for city in cities %}
+                                                <option value="{{city.id}}">{{city.name}}</option>
+                                                {% endfor %}
+                                            </select>
                                         </div>
                                     </div>
                                     
@@ -38,7 +44,7 @@
                                     <div class="col-sm-3">    
                                         <div class="card-body">
                                             <div class="input-group date" data-provide="datepicker">
-                                                <input type="text" class="form-control"  placeholder="Check in" style="border-radius: 10px;">
+                                                <input type="text" class="form-control" name="check_in" id="check_in" placeholder="Check in" autocomplete="off" style="border-radius: 10px;border-color: black;">
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-th"></span>
                                                 </div>
@@ -51,7 +57,7 @@
                                     <div class="col-sm-3">    
                                         <div class="card-body">
                                             <div class="input-group date" data-provide="datepicker">
-                                                <input type="text" class="form-control"  placeholder="Check out" style="border-radius: 10px;">
+                                                <input type="text" id="check_out" name="check_out" class="form-control"  placeholder="Check out" autocomplete="off" style="border-radius: 10px; border-color: black;">
                                                 <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-th"></span>
                                                 </div>
@@ -59,10 +65,9 @@
                                         </div>    
                                     </div>    
                                     
-                                    
                                         <div class="col-sm-2">
                                             <div class="search-button">
-                                            <button type="button" class="btn btn-primary">Search 🔍</button>
+                                                <input type="submit" value="Search 🔍">
                                             </div>
                                         </div> 
                                 </div> 
@@ -72,8 +77,14 @@
                     </div> 
                 </div>
             </div>
+            </form>    
         </div>
     </div>    
+    <script>
+
+
+    </script>
+    
 {% endblock %}
           
 

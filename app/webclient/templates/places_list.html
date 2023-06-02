@@ -17,106 +17,62 @@
                     <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-body-tertiary overflow-auto" style="width: 100%; max-height: 100vh;">
                         <h2>Your Research 🔍</h2>
 
-                        <div class="card-group check" >
-                            <div class="card check">
-                              <div class="card-body">
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control"  placeholder="Check in">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
-                                </div>
-                              </div>    
+                        <form method="post">  
+                          {% csrf_token %}
+
+                          <div class="card-group check" >
+                              <div class="card check">
+                                <div class="card-body">
+                                  <div class="input-group date" data-provide="datepicker">
+                                      <input type="text" class="form-control" name="check_in" id="check_in"  placeholder="Check in" autocomplete="off">
+                                      <div class="input-group-addon">
+                                          <span class="glyphicon glyphicon-th"></span>
+                                      </div>
+                                  </div>
+                                </div>    
+                              </div>
+                            
+                            
+                              <div class="card check">
+                                <div class="card-body">
+                                  <div class="input-group date" data-provide="datepicker">
+                                      <input type="text" id="check_out" name="check_out" class="form-control"  placeholder="Check out" autocomplete="off">
+                                      <div class="input-group-addon">
+                                          <span class="glyphicon glyphicon-th"></span>
+                                      </div>
+                                  </div>
+                                </div>    
+                              </div>
+                          
+                              <div class="search-button">
+                                <input type="submit" value="Search 🔍">
                             </div>
-                          
-                          
-                            <div class="card check">
-                              <div class="card-body">
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control"  placeholder="Check out">
-                                    <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>
-                                </div>
-                              </div>    
-                            </div>
-                         
-                            <button type="button" class="btn btn-primary" >🔍</button>
-                          
-                        </div>
+                          </div>
+                        </form>
                         
 
                         <div class="list-group list-group-flush border-bottom scrollarea">
-                        
-                          <div class="hotel-card">
+                          {% for place in places %}
+                          <a href="/place/{{place.place_id}}?check_in={{check_in}}&check_out={{check_out}}" style="text-decoration: none;">
+                            
+                          <div class="hotel-card" >
                             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" >
                                 <div class="col-auto d-none d-lg-block" >
-                                  <img src="https://static.hosteltur.com/app/public/uploads/img/articles/2013/09/01/M_5b14ea6fb7f86_shutterstock_HOTEL.jpg" alt="" >
+                                  <img src={{place.place.picture}} alt="" >
                                 </div>
+                                
                                 <div class="col p-4 d-flex flex-column position-static" >
-                                  <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐</strong>
-                                  <h4 class="mb-0">Hotel Bastardo</h4>
-                                  <p class="card-text mb-auto">Adress</p>
+                                  <strong class="d-inline-block mb-2 text-primary">{{place.place.stars_icons}}</strong>
+                                  <h4 class="mb-0">{{place.place.name}}</h4>
+                                  <p class="card-text mb-auto">{{place.place.address}}</p>
                                   <button type="button" class="btn btn-primary card" >Availability</button>
                                </div>
+                               
                             </div>
                           </div>
+                        </a>
+                          {% endfor %}
 
-                          <div class="hotel-card">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                <div class="col-auto d-none d-lg-block">
-                                  <img src="https://www.intermundial.es/blog/wp-content/uploads/2011/09/problemas-hotel-1200x798.jpg" alt="" >
-                                </div>
-                                <div class="col p-4 d-flex flex-column position-static">
-                                  <strong class="d-inline-block mb-2 text-primary">⭐⭐</strong>
-                                  <h4 class="mb-0">Hotel Maravilla</h4>
-                                  <p class="card-text mb-auto">Adress</p>
-                                  <button type="button" class="btn btn-primary card">Availability</button>
-                               </div>
-                            </div>
-                          </div>
-
-                            <div class="hotel-card">
-                              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                  <div class="col-auto d-none d-lg-block">
-                                    <img src="https://www.hotelgest.com/wp-content/uploads/2022/10/hotelgest.jpg" alt="" >
-                                  </div>
-                                  <div class="col p-4 d-flex flex-column position-static">
-                                    <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐⭐</strong>
-                                    <h4 class="mb-0">Hotel Samos</h4>
-                                    <p class="card-text mb-auto">Adress</p>
-                                    <button type="button" class="btn btn-primary card">Availability</button>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="hotel-card">
-                              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                  <div class="col-auto d-none d-lg-block">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB4jc5QUq-gKAZFgECy8fEal7VWuWRVutJmw&usqp=CAU" alt="">
-                                  </div>
-                                  <div class="col p-4 d-flex flex-column position-static">
-                                    <strong class="d-inline-block mb-2 text-primary">⭐</strong>
-                                    <h4 class="mb-0">Hostal Sans</h4>
-                                    <p class="card-text mb-auto">Adress</p>
-                                    <button type="button" class="btn btn-primary card">Availability</button>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="hotel-card">
-                              <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                                  <div class="col-auto d-none d-lg-block">
-                                    <img src="https://guias-viajar.com/estados-unidos/wp-content/uploads/sites/4/2018/03/estados-unidos-moteles-003.jpg" alt="" >
-                                  </div>
-                                  <div class="col p-4 d-flex flex-column position-static">
-                                    <strong class="d-inline-block mb-2 text-primary">⭐⭐⭐⭐</strong>
-                                    <h4 class="mb-0">Route 66</h4>
-                                    <p class="card-text mb-auto">Adress</p>
-                                    <button type="button" class="btn btn-primary card">Availability</button>
-                                </div>
-                              </div>
-                            </div>
 
                         </div>
                     </div>
@@ -126,7 +82,7 @@
                   <div id="map"></div>
                 </div>
                 <script>
-                  const map = L.map('map').setView([39.714760, 2.914294], 13);
+                  const map = L.map('map').setView([39.571609, 2.986395], 13);
                 
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 10,

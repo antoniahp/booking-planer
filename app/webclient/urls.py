@@ -8,8 +8,8 @@ from webclient.views import  pay_page
 
 urlpatterns = [
     path('', home, name='home'),
-    path('places_list', places_list, name='places_list'),
+    path('city/<int:city_id>', places_list, name='city'),
     path('base', base, name='base'),
-    path('place', place, name='place'),
-    path('pay_page', pay_page, name='pay_page'),
+    path('place/<int:place_id>', place, name='place'),
+    path('pay_page/<int:place_id>', pay_page, name='pay_page'),
 ]

@@ -9,60 +9,53 @@
 <div class="place-page">
     <div class="container-fluid">
         <div class="place_name">
-            <h1>Hotel Bastardo⭐⭐⭐</h1>
+            <h1>{{place.name}} {{place.stars_icons}}</h1>
         </div>
 
         <div class="row">
             <div class="col-sm-6">
+                
                 <div class="carousel">
-                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                   
+                    <div id="myCarousel" class="carousel slide pointer-event" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class=""
-                                aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"
-                                class=""></button>
-                            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"
-                                class="active" aria-current="true"></button>
+                            {% for picture in place.pictures %}
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4" class="active" aria-current="true"></button>
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 3" class="active" aria-current="true"></button>
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 2" class="active" aria-current="true"></button>
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 1" class="active" aria-current="true"></button>
+                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 0" class="active" aria-current="true"></button>
+                          {% endfor %}
+                          
                         </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item">
-                                <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/diaporama/_-image-0_50/1000x548_C_image-0_50.jpg"
-                                    alt="">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/_-image-3_30/1000x548_C_image-3_30.jpg"
-                                    alt="">
-                            </div>
-                            <div class="carousel-item active">
-                                <img src="https://groupcorner.com/uploads/HOTELS/hotel_11426/_-image-3_30/1000x548_C_image-3_30.jpg"
-                                    alt="">
 
+                        <div class="carousel-inner">
+                            {% for picture in place.pictures%} 
+                            <div class="carousel-item {% if forloop.first %} active {% endif %} ">
+                              <img src="{{picture}}" alt="">
                             </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            {% endfor %}
+                            
+                          </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
                         </button>
+                    </div>
                         <div class="card">
                             <div class="card-body">
-                                <h5>Encuéntrese con una cálida bienvenida mediterránea para una estancia inolvidable en
-                                    nuestro moderno hotel de 4 estrellas en Magaluf, en la hermosa región de Calvià,
-                                    Mallorca.
-                                    Cree una estancia a su medida con nuestra selección de elegantes habitaciones,
-                                    opciones de alojamiento y servicios de alta calidad, todo ello proporcionado con
-                                    profesionalidad, una sonrisa amable y un toque personal.
-                                    Tanto si está fuera todo el día como si nunca deja su tumbona junto a la piscina, el
-                                    Hotel Samos tiene todo lo que necesita para un maravilloso descanso, sea cual sea su
-                                    tipo de vacaciones.</h5>
+                                <h5>{{place.description}}</h5>
                             </div>
                         </div>
-                    </div>
+                        
                 </div>
             </div>
             <div class="col-sm-6">
@@ -82,15 +75,17 @@
                 <div class="booking">
                     <div class="card">
                         <ul class="list-group list-group-flush">
+                            
                             <li class="list-group-item top">
-                                <h3>Habitación doble suit</h3>
+                                <h3>{{ rooms.0.name }}</h3>
                             </li>
                             <li class="list-group-item all"><br>
-                                <h5>📆Check in: 05/05/23 📆Check out: 07/05/23</h5><br>
+                                <h5>📆{{ check_in }} 📆{{ check_out }}</h5><br>
                             </li>
                             <li class="list-group-item all"><br>
-                                <h3>Precio final: 356€ <br><br> <button type="button" class="btn btn-primary">Reserver now</button></h3><br>
+                                <h3>Precio final:  {{ rooms.0.price }}€<br><br> <a href="/pay_page/{{place.id}}?check_in={{check_in}}&check_out={{check_out}}" style="text-decoration: none;"><button type="button" class="btn btn-primary">Reserver now</button></h3><br></a> 
                             </li>
+
                         </ul>
                     </div>
                 </div>
@@ -115,13 +110,9 @@
                             <li class="list-group-item top">
                                 <h3>Room types</h3>
                             </li>
-                            <li class="list-group-item">Single room</li>
-                            <li class="list-group-item">Suite room</li>
-                            <li class="list-group-item">Suite room</li>
-                            <li class="list-group-item">Double room suite</li>
-                            <li class="list-group-item">Single room</li>
-                            <li class="list-group-item">Room with balcony</li>
-                            <li class="list-group-item">Double room suite</li>
+                            {% for room in rooms %}
+                            <li class="list-group-item">{{room.name}}</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -134,13 +125,9 @@
                             <li class="list-group-item top" >
                                 <h3>Persons</h3>
                             </li>
-                            <li class="list-group-item info">1👤</li>
-                            <li class="list-group-item info">2👤👤</li>
-                            <li class="list-group-item info">2👤👤</li>
-                            <li class="list-group-item info">4👤👤 👤👤</li>
-                            <li class="list-group-item info">1👤</li>
-                            <li class="list-group-item info">3👤👤 👤</li>
-                            <li class="list-group-item info">2👤👤</li>
+                            {% for room in rooms %}
+                            <li class="list-group-item">{{room.beds}}👤</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -153,13 +140,9 @@
                             <li class="list-group-item top">
                                 <h3>Price</h3>
                             </li>
-                            <li class="list-group-item info">150€</li>
-                            <li class="list-group-item info">550€</li>
-                            <li class="list-group-item info">220€</li>
-                            <li class="list-group-item info">345€</li>
-                            <li class="list-group-item info">743€</li>
-                            <li class="list-group-item info">320€</li>
-                            <li class="list-group-item info">1123€</li>
+                            {% for room in rooms %}
+                            <li class="list-group-item">{{room.price}}€</li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -172,20 +155,11 @@
                             <li class="list-group-item top">
                                 <h3>Reserve</h3>
                             </li>
+                           
+                            {% for room in rooms %}
                             <li class="list-group-item"><a href="#"
-                                    class="link-primary">Reserve</a></li>
-                            <li class="list-group-item"><a href="#"
-                                    class="link-primary">Reserve</a></li>
-                            <li class="list-group-item"><a href="#"
-                                    class="link-primary">Reserve</a></li>
-                            <li class="list-group-item"><a href="#"
-                                    class="link-primary">Reserve</a></li>
-                            <li class="list-group-item"><a href="#"
-                                    class="link-primary">Reserve</a></li>
-                            <li class="list-group-item"><a href="#"
-                                    class="link-primary">Reserve</a></li>
-                            <li class="list-group-item"><a href="#"
-                                    class="link-primary click">Reserve</a></li>
+                                class="link-primary">Reserve</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

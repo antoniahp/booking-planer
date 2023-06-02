@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import ContinentModel, CountryModel, CityModel, PlaceModel, RoomModel, BookingModel, TemporalBookingModel
+from core.models import ContinentModel, CountryModel, CityModel, PlaceModel, RoomModel, BookingModel, TemporalBookingModel,PicturesPlacesModels
 
 
 class CountryInLine(admin.StackedInline):
@@ -89,6 +89,6 @@ admin.site.register(PlaceModel, PlaceAdmin)
 admin.site.register(RoomModel, RoomAdmin)
 admin.site.register(BookingModel,BookingAdmin)
 admin.site.register(TemporalBookingModel)
-
+admin.site.register(PicturesPlacesModels)
 
 

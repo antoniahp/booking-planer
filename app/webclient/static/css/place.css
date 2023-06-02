@@ -4,9 +4,9 @@
     margin-top: 50px;
 }
 
-.carousel {
+.carousel.carousel-item{
     max-width: 800px;
-    max-height: 1000px;
+    max-height: 800px;
     border-radius: 17px;
     
 }

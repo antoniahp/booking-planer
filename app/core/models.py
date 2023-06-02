@@ -88,3 +88,11 @@ class TemporalBookingModel(models.Model):
 
     def __str__(self) -> str:
         return f" {self.room.place} - {self.room.name} "
+    
+
+class PicturesPlacesModels(models.Model):
+    picture = models.ImageField()
+    place = models.ForeignKey("PlaceModel", on_delete=models.CASCADE, related_name="pictures")
+
+    def __str__(self) -> str:
+        return f"{self.place.name}"

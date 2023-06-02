@@ -1,5 +1,5 @@
 from ninja import NinjaAPI
-from core.models import  BookingModel, RoomModel, PlaceModel, CityModel, CountryModel, ContinentModel, TemporalBookingModel
+from core.models import  BookingModel, RoomModel, PlaceModel, CityModel, CountryModel, ContinentModel, TemporalBookingModel, PicturesPlacesModels
 from ninja import Schema
 from datetime import date
 from datetime import datetime
@@ -10,9 +10,9 @@ api = NinjaAPI(title="Traveling API", version="1.0.0")
 
 @api.get("/booking")
 def get_bookings(request):
-    results = []
+    bookings = []
     for booking in BookingModel.objects.filter():
-        results.append({
+        bookings.append({
         "name": booking.room.name,
         "room": booking.room.id,
         "check_in": booking.check_in,
@@ -23,9 +23,10 @@ def get_bookings(request):
         "entitled_guest_surname": booking.entitled_guest_surname,
         "phone": booking.phone,
         "email": booking.email,
+        "id": booking.id
 
         })
-    return {"get_bookings": results}
+    return {"bookings": bookings}
 
 
 class BookingSchema(Schema):
@@ -68,9 +69,9 @@ def post_bookings(request, booking: BookingSchema):
 
 @api.get("/room")
 def get_rooms(request):
-    results = []
+    rooms = []
     for room in RoomModel.objects.filter():
-        results.append({
+        rooms.append({
         "name": room.name,
         "place": room.place.name,
         "picture": room.picture.url,
@@ -78,10 +79,10 @@ def get_rooms(request):
         "beds": room.beds,
         "price": room.price,
         "total_rooms": room.total_rooms,
-
+        "id": room.id,
 
         })
-    return {"get_rooms": results}
+    return {"rooms": rooms}
 
 
 class RoomSchema(Schema):
@@ -115,9 +116,9 @@ def post_rooms(request, room: RoomSchema):
 
 @api.get("/place")
 def get_places(request):
-    results = []
+    places = []
     for place in PlaceModel.objects.filter():
-        results.append({
+        places.append({
         "name": place.name,
         "picture": place.picture.url,
         "description": place.description,
@@ -126,11 +127,12 @@ def get_places(request):
         "category": place.category,
         "stars": place.stars,
         "city": place.city.name,
+        "id": place.id
         })
         
-    return {"get_places": results}
+    return {"places": places}
 
-
+ 
 class PlaceSchema(Schema):
     name: str
     picture: str
@@ -146,7 +148,7 @@ class PlaceSchema(Schema):
 def post_places(request, place: PlaceSchema):
     db_place, created = PlaceModel.objects.get_or_create(
         name=place.name, picture=place.picture, description=place.description, address=place.address, price=place.price, 
-        category=place.category, stars=place.stars, city=place.city
+        category=place.category, stars=place.stars, city=place.city, id=place.id
     )
     return {
         "place": {
@@ -157,21 +159,23 @@ def post_places(request, place: PlaceSchema):
             "price":db_place.price,
             "category":db_place.category,
             "stars":db_place.stars,
+            "stars_icons":db_place.stars * "⭐",
             "city":db_place.city,
-
+            "id": place.id
         }
     }
 
 
 @api.get("/city")
 def get_cities(request):
-    results = []
+    cities = []
     for city in CityModel.objects.filter():
-        results.append({
+        cities.append({
             "name": city.name,
-            "country": city.country.name
+            "country": city.country.name,
+            "id": city.id,
         })
-    return {"get_cities": results}
+    return {"cities": cities}
 
 
 class CitySchema(Schema):
@@ -270,15 +274,32 @@ def get_place_availability(request, place_id: int, check_in: date, check_out: da
                 "total_free_rooms" : total_free_rooms,
                 "name": room.name,
                 "place": room.place.name,
+                "stars": room.place.stars,
+                "stars_icons": room.place.stars * "⭐",
                 "picture": room.picture.url,
                 "description": room.description,
                 "beds": room.beds,
                 "price": room.price,
                 "total_rooms": room.total_rooms,
+                
             
 
             })
-    return results
+    place_picture_urls=[]
+    for picture in room.place.pictures.all():
+        place_picture_urls.append(picture.picture.url)
+    return {
+        "place":{
+            "name":room.place.name,
+            "stars":room.place.stars,
+            "description": room.description,
+            "price": room.price,
+            "id": room.place.id,
+            "stars_icons": room.place.stars * "⭐",
+            "pictures": place_picture_urls
+        },
+        "rooms":results
+    }
 
 
 
@@ -325,6 +346,7 @@ def get_city_availability(request, check_in: date, check_out: date, city_id: int
             "price": place.price,
             "category": place.category,
             "stars": place.stars,
+            "stars_icons": place.stars * "⭐",
             "city": place.city.name,
             }
             
@@ -373,6 +395,8 @@ class TemporalBookingSchema(Schema):
 
 @api.post("/temporalBooking")
 def post_temporalBooking(request, temporalBooking: TemporalBookingSchema):
+
+
     db_temporalBooking, created = TemporalBookingSchema.objects.create(
         name=temporalBooking.name, room=temporalBooking.room, check_in=temporalBooking.check_in, check_out=temporalBooking.check_out, total_price=temporalBooking.total_price, 
         total_guests=temporalBooking.total_guests, entitled_guest_name=temporalBooking.entitled_guest_name, entitled_guest_surname=temporalBooking.entitled_guest_surname, 
@@ -395,3 +419,14 @@ def post_temporalBooking(request, temporalBooking: TemporalBookingSchema):
 
         }
     }
+
+
+@api.get("/picture")
+def get_pictures(request):
+    results = []
+    for picture in PicturesPlacesModels.objects.filter():
+        results.append({
+            "picture": picture.pictures,
+            "place": picture.place,
+        })
+    return {"get_pictures": results}
